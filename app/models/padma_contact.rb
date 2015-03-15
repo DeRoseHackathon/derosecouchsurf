@@ -1,6 +1,6 @@
 class PadmaContact
 
-  SELECT = [ :first_name, :last_name, :status, :level]
+  SELECT = [ :first_name, :last_name, :status, :level, :owner_name]
 
   # Will search for a student with given email
   # @return [Hash] contact representation
