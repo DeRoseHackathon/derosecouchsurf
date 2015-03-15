@@ -1,0 +1,41 @@
+<%= form_for(@request) do |f| %>
+  <% if @request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= label_tag("Begins on") %>
+  <%= f.date_select :begins_on, id: 'begins_on' %><br>
+
+  <%= label_tag("Begins on flexible") %>
+  <%= f.check_box :begins_flexible, id: 'begins_flexible' %><br>
+
+  <%= label_tag("Ends on") %>
+  <%= f.date_select :ends_on, id: 'ends_on' %><br>
+
+  <%= label_tag("Ends on flexible") %>
+  <%= f.check_box :ends_flexible, id: 'ends_flexible' %><br>
+
+  <%= label_tag(:address, "Country") %>
+  <%= f.text_field :country, id: 'country' %><br>
+
+  <%= label_tag(:address, "State") %>
+  <%= f.text_field :state, id: 'administrative_area_level_1' %><br>
+
+  <%= label_tag(:address, "City") %>
+  <%= f.text_field :city, id: 'locality' %><br>
+
+  <%= label_tag(:description, "Description") %>
+  <%= f.text_area :description, id: 'description' %><br>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
