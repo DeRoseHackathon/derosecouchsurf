@@ -58,6 +58,7 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda-matchers', require: false
 
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
