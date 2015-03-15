@@ -8,6 +8,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<<<<<<< HEAD
 <% if user_signed_in? %>
   <li>
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
@@ -17,6 +18,32 @@
   <%= link_to('Login', new_user_session_path)  %>  
   </li>
 <% end %>
+=======
+<div class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a>
+      <a class="navbar-brand" href="#"><span>DeROSE CouchSurf</span></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-ex-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active">
+            <a href="#">About</a>
+        </li>
+        <% if user_signed_in? %>
+          <li>
+          <%= link_to(t('Logout'), destroy_user_session_path, :method => :delete) %>        
+          </li>
+        <% else %>
+          <li>
+          <%= link_to(t('Login'), new_user_session_path)  %>  
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+>>>>>>> bootstrap installed, home proto
 
 <%= yield %>
 
