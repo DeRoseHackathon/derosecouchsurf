@@ -1,2 +1,11 @@
 <h1>User Show</h1>
 <%= @user.name %>
+
+<h2>Offers</h2>
+<% @user.offers.each do |offer| %>
+  <%= "Address: #{offer.address}" %> <br>
+  <%= "Neighborhood: #{offer.neighborhood} <br>" if offer.neighborhood %>
+  <%= "City: #{offer.city}" %> <br>
+  <%= "State: #{offer.state}" %> <br>
+  <%= "Country: #{offer.country}" %> <br><br>
+<% end %>

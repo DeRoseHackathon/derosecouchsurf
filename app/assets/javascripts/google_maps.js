@@ -87,16 +87,22 @@ function initialize() {
     var place = autocomplete.getPlace();
 
     for (var component in componentForm) {
-      document.getElementById(component).value = '';
-      document.getElementById(component).disabled = false;
+      if(component != 'street_number'){
+        document.getElementById(component).value = '';
+        document.getElementById(component).disabled = false;
+      }
     }
 
     // Get each component of the address from the place details
     // and fill the corresponding field on the form.
-    for (var i = 0; i < place.address_components.length; i++) {
+    for (var i = 1; i < place.address_components.length; i++) {
       var addressType = place.address_components[i].types[0];
       if (componentForm[addressType]) {
-        var val = place.address_components[i][componentForm[addressType]];
+        if (i == 1){
+          var val = place.address_components[i][componentForm[addressType]] + ' ' + place.address_components[0][componentForm[addressType]];
+        }else{
+          var val = place.address_components[i][componentForm[addressType]];
+        }
         document.getElementById(addressType).value = val;
       }
     }
