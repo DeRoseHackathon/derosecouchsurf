@@ -2,24 +2,28 @@ body.home {
   background-image: image-url('homepic3.jpg');
 }
 
-.cover {
-  padding: 0px;
+.home-page-copy {
+  text-align: center;
+  bottom: 25px;
+  position: absolute;
 }
 
-.cover h1 {
+.home-page-copy h1 {
   color: #ffffff !important;
   font-size: 63px;
+  font-family: "Lato";
 }
 
-.cover p {
+.home-page-copy p {
   color: #ffffff !important;
   font-size: 21px;
   font-weight: 200;
+  font-family: "Lato";
 }
 
 .navbar-brand.logo {
-  background-image: image-url('logo-04.png');
-  height: 182px;
+  background: image-url('logo-04.png') 0px 18px no-repeat;
+  height: 200px;
   width: 182px;
   overflow: auto;
   text-indent: -10000px;
@@ -32,9 +36,4 @@ body.home {
   width: 250px;
   overflow: auto;
   text-indent: -10000px;
-}
-
-
-.row-centered {
-  text-align: center;
 }
