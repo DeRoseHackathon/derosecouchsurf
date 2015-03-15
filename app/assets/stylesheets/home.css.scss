@@ -1,5 +1,5 @@
-body {
-  background-image: image-url('homepic.jpg');
+body.home {
+  background-image: image-url('homepic3.jpg');
 }
 
 .cover {
@@ -15,14 +15,6 @@ body {
   color: #ffffff !important;
   font-size: 21px;
   font-weight: 200;
-}
-
-.cover .navbar {
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  border: none;
-  background-color: transparent !important;
 }
 
 .navbar-brand.logo {
