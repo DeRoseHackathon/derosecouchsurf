@@ -1,5 +1,5 @@
 body {
-  background-image: image-url('homepic3.jpg');
+  background-image: image-url('homepic.jpg');
 }
 
 .cover {
@@ -23,4 +23,26 @@ body {
   width: 100%;
   border: none;
   background-color: transparent !important;
+}
+
+.navbar-brand.logo {
+  background-image: image-url('logo-04.png');
+  height: 182px;
+  width: 182px;
+  overflow: auto;
+  text-indent: -10000px;
+}
+
+.navbar-brand.text {
+  background-image: image-url('logo-06.png');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  width: 250px;
+  overflow: auto;
+  text-indent: -10000px;
+}
+
+
+.row-centered {
+  text-align: center;
 }
