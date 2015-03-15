@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+  resources :users
+  get 'sign_in', :to => 'users/sessions#new', :as => :new_session
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
