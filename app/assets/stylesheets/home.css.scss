@@ -1,0 +1,40 @@
+body.home {
+  background-image: image-url('homepic3.jpg');
+}
+
+.cover {
+  padding: 0px;
+}
+
+.cover h1 {
+  color: #ffffff !important;
+  font-size: 63px;
+}
+
+.cover p {
+  color: #ffffff !important;
+  font-size: 21px;
+  font-weight: 200;
+}
+
+.navbar-brand.logo {
+  background-image: image-url('logo-04.png');
+  height: 182px;
+  width: 182px;
+  overflow: auto;
+  text-indent: -10000px;
+}
+
+.navbar-brand.text {
+  background-image: image-url('logo-06.png');
+  background-size: 80%;
+  background-repeat: no-repeat;
+  width: 250px;
+  overflow: auto;
+  text-indent: -10000px;
+}
+
+
+.row-centered {
+  text-align: center;
+}

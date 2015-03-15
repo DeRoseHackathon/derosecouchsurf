@@ -1,0 +1,45 @@
+<h1>Edit Address</h1>
+<h2>Select address</h2>
+<div class="map-container">
+  <input id="pac-input" class="controls" type="text"
+      placeholder="Enter a location">
+  <div id="type-selector" class="controls">
+    <input type="radio" name="type" id="changetype-all" checked="checked">
+    <label for="changetype-all">All</label>
+
+    <input type="radio" name="type" id="changetype-establishment">
+    <label for="changetype-establishment">Establishments</label>
+
+    <input type="radio" name="type" id="changetype-address">
+    <label for="changetype-address">Addresses</label>
+
+    <input type="radio" name="type" id="changetype-geocode">
+    <label for="changetype-geocode">Geocodes</label>
+  </div>
+  <div id="map-canvas"></div>
+</div>
+
+<%= form_for @offer, url: {action: "update"} do |f| %>
+  <%= label_tag(:address, "Address") %>
+  <%= f.text_field :address, id: "route" %><br>
+  <%= label_tag(:address, "City") %>
+  <%= f.text_field :city, id: 'locality' %><br>
+  <%= label_tag(:address, "State") %>
+  <%= f.text_field :state, id: 'administrative_area_level_1' %><br>
+  <%= label_tag(:address, "Postal Code") %>
+  <%= f.text_field :zip_code, id: 'postal_code' %><br>
+  <%= label_tag(:address, "Country") %>
+  <%= f.text_field :country, id: 'country' %><br>
+  <%= label_tag(:description, "Description") %>
+  <%= f.text_area :description, id: 'description' %><br>
+  <%= label_tag(:status, "Available") %>
+  <%= f.check_box :status, id: 'available' %><br>
+  <%= f.submit "Update" %>
+<% end %>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    google.maps.event.addDomListener(window, 'load', initialize);
+  })
+</script>

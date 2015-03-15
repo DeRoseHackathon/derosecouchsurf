@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315172227) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20150315192404) do
+=======
+ActiveRecord::Schema.define(version: 20150315172831) do
+>>>>>>> ui
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,6 +26,20 @@ ActiveRecord::Schema.define(version: 20150315172227) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+
+  create_table "offers", force: :cascade do |t|
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
+    t.string   "neighborhood"
+    t.string   "zip_code"
+    t.string   "address"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.text     "description"
+  end
 
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
