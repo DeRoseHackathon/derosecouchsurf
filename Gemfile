@@ -32,6 +32,21 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# App configuration
+gem "figaro"
+
+# Authentication
+gem 'devise'
+gem 'omniauth'
+#gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+
+#Authorization
+#gem "pundit"
+
+#Static pages
+gem 'high_voltage'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
