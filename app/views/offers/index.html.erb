@@ -1,4 +1,24 @@
 <h1>Available Offers</h1>
 <% @offers.each do |offer| %>
-  <%= render offer %>
+  <%= render offer %><br>
 <% end %>
+
+<h2>Filter by</h2>
+<%= form_tag("/offers", method: "get") do %>
+  <%= label_tag('offer[country]', "Country:") %>
+  <%= select_tag 'offer[country]', options_for_select(@countries) %><br>
+  
+  <%= label_tag('offer[state]', "State:") %>
+  <%= text_field_tag 'offer[state]' %><br>
+  
+  <%= label_tag('offer[city]', "City:") %>
+  <%= text_field_tag 'offer[city]' %><br>
+  
+  <%= submit_tag("Search") %>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#offer_country').select2()
+  })
+</script>

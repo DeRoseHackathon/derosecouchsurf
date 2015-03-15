@@ -1,0 +1,33 @@
+$(document).ready ->
+
+  statesURL = ->
+    "states.json?country="+$('#offer_country').select2("val")
+
+  citiesURL = ->
+    "cities.json?country="+$('#offer_country').select2("val")+"&state="+$('#offer_state').select2("val")
+
+  $('#offer_state').select2(
+    ajax:
+      url: statesURL
+      dataType: "json"
+      delay: 250
+      data: (params) ->
+        q: params
+      results: (data, page) ->
+        results: data.collection
+      cache: true
+    minimumInputLength: 2
+  )
+
+  $('#offer_city').select2(
+    ajax:
+      url: citiesURL
+      dataType: "json"
+      delay: 250
+      data: (params) ->
+        q: params
+      results: (data, page) ->
+        results: data.collection
+      cache: true
+    minimumInputLength: 2
+  )

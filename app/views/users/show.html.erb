@@ -3,5 +3,10 @@
 
 <h2>Offers</h2>
 <% @user.offers.each do |offer| %>
+  <% if offer.status %>
+    <h4>Available</h4>
+    <% else %>
+    <h4>Not available</h4>
+  <% end %>
   <%= render offer %>
 <% end %>

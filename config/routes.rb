@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
   resources :users
   resources :offers
+  resources :states
+  resources :cities
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_session
   end

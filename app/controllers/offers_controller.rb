@@ -1,6 +1,12 @@
 class OffersController < ApplicationController
   def index
-    
+    search_params = []
+    if params['offer']
+      search_params = offer_params.merge(status: true) 
+      search_params = search_params.delete_if {|k,v| v.blank?}
+    end
+    @countries = Offer.select(:country).distinct.map(&:country)
+    @offers = Offer.where(search_params)
   end
 
   def show
