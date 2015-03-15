@@ -1,5 +1,7 @@
 class PadmaContact
 
+  SELECT = [ :first_name, :last_name, :status, :level]
+
   # Will search for a student with given email
   # @return [Hash] contact representation
   # TODO @return false if not found
@@ -15,13 +17,7 @@ class PadmaContact
                     email: email,
                     status: 'student'
                   },
-                  select: [ 
-                    :first_name,
-                    :last_name,
-                    :status,
-                    :level,
-                    :local_statuses
-                  ]
+                  select: SELECT
                  }
     )
 
@@ -40,13 +36,7 @@ class PadmaContact
     response = Typhoeus.get("#{CONTACTS_URL}/v0/contacts/#{padma_id}",
                  params: {
                   app_key: ENV['contacts_key'],
-                  select: [ 
-                    :first_name,
-                    :last_name,
-                    :status,
-                    :level,
-                    :local_statuses
-                  ]
+                  select: SELECT
                  }
     )
     
