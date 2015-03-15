@@ -1,6 +1,7 @@
-class UsersController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+class UsersController < UserApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
+  skip_before_action :authorize_user!, only: [:finish_signup]
+  skip_before_action :ensure_student, only: [:finish_signup]
 
   # GET /users/:id.:format
   def show
@@ -30,14 +31,21 @@ class UsersController < ApplicationController
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
     # authorize! :update, @user 
-    if request.patch? && params[:user] #&& params[:user][:email]
-      if @user.update(user_params)
-        @user.skip_reconfirmation!
-        sign_in(@user, :bypass => true)
-        redirect_to @user, notice: 'Your profile was successfully updated.'
+    if request.patch? && params[:user] && (email = params[:user][:email])
+      # Search in Padma Contacts
+      padma_contact = PadmaContact.find_student_by_email(email)
+      if padma_contact
+        # If a student is found with the social network email skip confirmation entirely
+          @user.padma_id = padma_contact['_id']
+          @user.email = email
+          @user.save
+          @confirm_email_message = "Verifica tu casilla de email para confirmar tu cuenta"
       else
+        @user.errors.add :base, "No encontramos tu email en el sistema del Metodo DeRose, consulta con tu instructor"
         @show_errors = true
       end
+    elsif current_user.unconfirmed_email
+      @confirm_email_message = "Verifica tu casilla de email para confirmar tu cuenta"
     end
   end
 
