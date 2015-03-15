@@ -21,8 +21,17 @@ class OffersController < ApplicationController
     end
   end
 
+  def edit
+    @offer = Offer.find(params[:id])
+  end
+
   def update
-    
+    @offer = Offer.find(params[:id])
+    if @offer.update_attributes(offer_params)
+      redirect_to user_path(current_user)
+    else
+      redirect_to edit_offer_path(@offer.id)
+    end
   end
 
   def destroy
@@ -30,6 +39,6 @@ class OffersController < ApplicationController
   end
 
   def offer_params
-    params.require(:offer).permit(:country, :state, :city, :neighborhood, :address, :zip_code)
+    params.require(:offer).permit(:country, :state, :city, :neighborhood, :address, :zip_code, :description, :status)
   end
 end

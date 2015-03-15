@@ -1,4 +1,4 @@
-<h1>New Address</h1>
+<h1>Edit Address</h1>
 <h2>Select address</h2>
 <div class="map-container">
   <input id="pac-input" class="controls" type="text"
@@ -19,7 +19,7 @@
   <div id="map-canvas"></div>
 </div>
 
-<%= form_for @offer, url: {action: "create"} do |f| %>
+<%= form_for @offer, url: {action: "update"} do |f| %>
   <%= label_tag(:address, "Address") %>
   <%= f.text_field :address, id: "route" %><br>
   <%= label_tag(:address, "City") %>
@@ -34,7 +34,7 @@
   <%= f.text_area :description, id: 'description' %><br>
   <%= label_tag(:status, "Available") %>
   <%= f.check_box :status, id: 'available' %><br>
-  <%= f.submit "Create" %>
+  <%= f.submit "Update" %>
 <% end %>
 
 

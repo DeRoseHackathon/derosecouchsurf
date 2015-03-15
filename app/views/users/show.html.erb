@@ -3,9 +3,17 @@
 
 <h2>Offers</h2>
 <% @user.offers.each do |offer| %>
+  <% if offer.status %>
+    <h4>Available</h4>
+    <% else %>
+    <h4>Not available</h4>
+  <% end %>
   <%= "Address: #{offer.address}" %> <br>
   <%= "Neighborhood: #{offer.neighborhood} <br>" if offer.neighborhood %>
   <%= "City: #{offer.city}" %> <br>
   <%= "State: #{offer.state}" %> <br>
-  <%= "Country: #{offer.country}" %> <br><br>
+  <%= "Country: #{offer.country}" %> <br>
+  <%= "Description: #{offer.description}" %> <br>
+  <%= link_to "Edit", edit_offer_path(offer.id) %>
+  <br>
 <% end %>
