@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :without => TEMP_EMAIL_REGEX, on: :update
 
+  def email_required?
+  	false
+  end
+
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
     # Get the identity and user if they exist
@@ -40,10 +44,22 @@ class User < ActiveRecord::Base
         user = User.new(
           name: auth.extra.raw_info.name,
           #username: auth.info.nickname || auth.uid,
-          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          #email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
         )
-        user.skip_confirmation!
+
+        # Search in Padma Contacts
+        padma_contact = PadmaContact.find_student_by_email(email)
+        if padma_contact
+        # If a student is found with the social network email skip confirmation entirely
+        	user.padma_id = padma_contact['_id']
+        	user.email = email
+        	user.skip_confirmation!
+    	else
+        # If not leave user unconfirmed
+        	user.email = "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com"
+        	user.skip_confirmation_notification!
+        end
         user.save!
       end
     end

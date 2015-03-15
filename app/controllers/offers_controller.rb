@@ -1,4 +1,6 @@
-class OffersController < ApplicationController
+class OffersController < UserApplicationController
+  skip_before_action :ensure_signup_complete, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index]
   def index
     search_params = []
     if params['offer']

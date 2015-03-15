@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315192404) do
+ActiveRecord::Schema.define(version: 20150315231357) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -39,10 +39,20 @@ ActiveRecord::Schema.define(version: 20150315192404) do
 
   create_table "requests", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "offer_id"
+    t.date     "begins_on"
+    t.date     "ends_on"
+    t.boolean  "begins_flexible"
+    t.boolean  "ends_flexible"
+    t.text     "description"
+    t.string   "country"
+    t.string   "state"
+    t.string   "city"
   end
 
+  add_index "requests", ["offer_id"], name: "index_requests_on_offer_id"
   add_index "requests", ["user_id"], name: "index_requests_on_user_id"
 
   create_table "users", force: :cascade do |t|
@@ -62,6 +72,8 @@ ActiveRecord::Schema.define(version: 20150315192404) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "padma_id"
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

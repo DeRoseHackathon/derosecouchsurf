@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :offers
   resources :states
   resources :cities
+  resources :requests
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :new_session
   end
